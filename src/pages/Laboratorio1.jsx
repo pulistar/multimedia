@@ -1,6 +1,6 @@
-import React from "react";
+import { Environment, OrbitControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls, Environment } from "@react-three/drei";
+import React from "react";
 import Lab1 from "../components/Lab_1";
 
 const Laboratorio1 = () => {

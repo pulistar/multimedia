@@ -1,15 +1,16 @@
 // src/app/router.jsx
 import React from "react";
-import Inicio from "./pages/Inicio";
+import Efectos from "./pages/Efectos";
 import Ejercicio1 from "./pages/Ejercicio1";
 import Ejercicio2 from "./pages/Ejercicio2";
 import Ejercicio3 from "./pages/Ejercicio3";
 import Ejercicio4 from "./pages/Ejercicio4";
 import Ejercicio5 from "./pages/Ejercicio5";
-import Luces from "./pages/Luces";
-import Sombras from "./pages/Sombras";
-import Efectos from "./pages/Efectos";
+import Inicio from "./pages/Inicio";
 import Laboratorio1 from "./pages/Laboratorio1";
+import Luces from "./pages/Luces";
+import Practica2 from "./pages/Practica2";
+import Sombras from "./pages/Sombras";
 
 
 const routes = [
@@ -23,6 +24,7 @@ const routes = [
   { path: "sombras", element: <Sombras /> },
   { path: "efectos", element: <Efectos /> },
   { path: "laboratorio1", element: <Laboratorio1 /> },
+  { path: "Practica2", element: <Practica2 /> },
 
 ];
 

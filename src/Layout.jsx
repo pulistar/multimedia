@@ -1,6 +1,6 @@
-import { Outlet, useLocation } from "react-router-dom";
-import { Container, Navbar, Nav, Dropdown } from "react-bootstrap";
 import { AnimatePresence, motion } from "framer-motion";
+import { Container, Dropdown, Nav, Navbar } from "react-bootstrap";
+import { Outlet, useLocation } from "react-router-dom";
 
 function Layout() {
   const location = useLocation();
@@ -37,6 +37,7 @@ function Layout() {
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
                   <Dropdown.Item href="/laboratorio1">Albedo - Alpha - Transparent</Dropdown.Item>
+                  <Dropdown.Item href="/Practica2">Practica 2</Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
             </Nav>

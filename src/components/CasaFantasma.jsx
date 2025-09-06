@@ -1,31 +1,24 @@
+import GUI from "lil-gui";
 import { useEffect, useRef } from "react";
 import * as THREE from "three";
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
-import { Timer } from "three/addons/misc/Timer.js";
-import { Sky } from "three/addons/objects/Sky.js";
-import GUI from "lil-gui";
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+import { Sky } from "three/examples/jsm/objects/Sky";
 
 const CasaEscena = () => {
   const canvasRef = useRef();
 
   useEffect(() => {
-    /**
-     * GUI - Interface de usuario ligera
-     */
+   
     const gui = new GUI();
 
-    /**
-     * Base
-     */
+   
     const canvas = canvasRef.current;
     const scene = new THREE.Scene();
 
-    /**
-     * Textures
-     */
+    
     const textureLoader = new THREE.TextureLoader();
 
-    // Floor - suelo
+    
     const floorAlphaTexture = textureLoader.load("./floor/alpha.webp");
     const floorColorTexture = textureLoader.load(
       "./floor/coast_sand_rocks_02_1k/coast_sand_rocks_02_diff_1k.webp"
@@ -57,7 +50,7 @@ const CasaEscena = () => {
       floorDisplacementTexture.wrapT =
         THREE.RepeatWrapping;
 
-    // Wall - paredes
+   
     const wallColorTexture = textureLoader.load(
       "./wall/castle_brick_broken_06_1k/castle_brick_broken_06_diff_1k.webp"
     );
@@ -69,7 +62,7 @@ const CasaEscena = () => {
     );
     wallColorTexture.colorSpace = THREE.SRGBColorSpace;
 
-    // Roof - techo
+  
     const roofColorTexture = textureLoader.load(
       "./roof/roof_slates_02_1k/roof_slates_02_diff_1k.webp"
     );
@@ -88,7 +81,7 @@ const CasaEscena = () => {
       roofNormalTexture.wrapS =
         THREE.RepeatWrapping;
 
-    // Bush - arbustos
+   
     const bushColorTexture = textureLoader.load(
       "./bush/leaves_forest_ground_1k/leaves_forest_ground_diff_1k.webp"
     );
@@ -107,7 +100,7 @@ const CasaEscena = () => {
       bushNormalTexture.wrapS =
         THREE.RepeatWrapping;
 
-    // Grave - tumbas
+   
     const graveColorTexture = textureLoader.load(
       "./grave/plastered_stone_wall_1k/plastered_stone_wall_diff_1k.webp"
     );
@@ -122,7 +115,6 @@ const CasaEscena = () => {
     graveARMTexture.repeat.set(0.3, 0.4);
     graveNormalTexture.repeat.set(0.3, 0.4);
 
-    // Door
     const doorColorTexture = textureLoader.load("./door/color.webp");
     const doorAlphaTexture = textureLoader.load("./door/alpha.webp");
     const doorAmbientOcclusionTexture = textureLoader.load(
@@ -134,9 +126,7 @@ const CasaEscena = () => {
     const doorRoughnessTexture = textureLoader.load("./door/roughness.webp");
     doorColorTexture.colorSpace = THREE.SRGBColorSpace;
 
-    /**
-     * House
-     */
+    
     const floor = new THREE.Mesh(
       new THREE.PlaneGeometry(20, 20, 100, 100),
       new THREE.MeshStandardMaterial({
@@ -171,7 +161,6 @@ const CasaEscena = () => {
     const house = new THREE.Group();
     scene.add(house);
 
-    // Walls - paredes
     const walls = new THREE.Mesh(
       new THREE.BoxGeometry(4, 2.5, 4),
       new THREE.MeshStandardMaterial({
@@ -185,7 +174,7 @@ const CasaEscena = () => {
     walls.position.y += 1.25;
     house.add(walls);
 
-    // Roof - techo
+  
     const roof = new THREE.Mesh(
       new THREE.ConeGeometry(3.5, 1.5, 4),
       new THREE.MeshStandardMaterial({
@@ -200,7 +189,7 @@ const CasaEscena = () => {
     roof.rotation.y = Math.PI * 0.25;
     house.add(roof);
 
-    // Door
+   
     const door = new THREE.Mesh(
       new THREE.PlaneGeometry(2.2, 2.2, 100, 100),
       new THREE.MeshStandardMaterial({
@@ -220,7 +209,7 @@ const CasaEscena = () => {
     door.position.z = 2 + 0.01;
     house.add(door);
 
-    // Bushes - arbustos
+ 
     const bushGeometry = new THREE.SphereGeometry(1, 16, 16);
     const bushMaterial = new THREE.MeshStandardMaterial({
       color: "#ccffcc",
@@ -248,7 +237,7 @@ const CasaEscena = () => {
     bush4.rotation.x = -0.75;
     house.add(bush1, bush2, bush3, bush4);
 
-    // Graves - tumbas
+
     const graveGeometry = new THREE.BoxGeometry(0.6, 0.8, 0.2);
     const graveMaterial = new THREE.MeshStandardMaterial({
       map: graveColorTexture,
@@ -272,9 +261,7 @@ const CasaEscena = () => {
       graves.add(grave);
     }
 
-    /**
-     * Lights
-     */
+    
     const ambientLight = new THREE.AmbientLight("#86cdff", 0.275);
     scene.add(ambientLight);
 
@@ -291,9 +278,6 @@ const CasaEscena = () => {
     const ghost3 = new THREE.PointLight("#ff0000", 6);
     scene.add(ghost1, ghost2, ghost3);
 
-    /**
-     * Sizes
-     */
     const sizes = { width: window.innerWidth, height: window.innerHeight };
 
     window.addEventListener("resize", () => {
@@ -305,9 +289,7 @@ const CasaEscena = () => {
       renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     });
 
-    /**
-     * Camera
-     */
+    
     const camera = new THREE.PerspectiveCamera(
       75,
       sizes.width / sizes.height,
@@ -320,16 +302,11 @@ const CasaEscena = () => {
     const controls = new OrbitControls(camera, canvas);
     controls.enableDamping = true;
 
-    /**
-     * Renderer
-     */
     const renderer = new THREE.WebGLRenderer({ canvas });
     renderer.setSize(sizes.width, sizes.height);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-    /**
-     * Shadows - Sombras
-     */
+  
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     directionalLight.castShadow = true;
@@ -364,9 +341,7 @@ const CasaEscena = () => {
     ghost3.shadow.mapSize.height = 256;
     ghost3.shadow.camera.far = 10;
 
-    /**
-     * Sky -  Cielo
-     */
+   
     const sky = new Sky();
     sky.scale.set(100, 100, 100);
     scene.add(sky);
@@ -376,19 +351,15 @@ const CasaEscena = () => {
     sky.material.uniforms["mieDirectionalG"].value = 0.95;
     sky.material.uniforms["sunPosition"].value.set(0.3, -0.038, -0.95);
 
-    /**
-     * Fog - Niebla
-     */
+   
     scene.fog = new THREE.FogExp2("#04343f", 0.1);
 
-    /**
-     * Animate
-     */
-    const timer = new Timer();
+   
+    const clock = new THREE.Clock(); // Usar Clock en lugar de Timer
     const tick = () => {
-      timer.update();
-      const elapsedTime = timer.getElapsed();
-      // Ghosts
+      const elapsedTime = clock.getElapsedTime(); // Obtener tiempo transcurrido
+      
+    
       const ghost1Angle = elapsedTime * 0.5;
       ghost1.position.x = Math.cos(ghost1Angle) * 4;
       ghost1.position.z = Math.sin(ghost1Angle) * 4;
