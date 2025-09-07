@@ -1,11 +1,11 @@
-import React, { useEffect, useRef } from 'react';
 import { useLoader } from "@react-three/fiber";
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
+import GUI from 'lil-gui'; //controlar la intensidad de la luz ambiental
+import React, { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
-import GUI from 'lil-gui'; //controlar la intensidad de la luz ambiental
 import { RectAreaLightHelper } from 'three/examples/jsm/helpers/RectAreaLightHelper.js';
 import { RectAreaLightUniformsLib } from 'three/examples/jsm/lights/RectAreaLightUniformsLib.js';
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 
 const ThreeScene = () => {
     const gltf = useLoader(GLTFLoader, "/assets/RobotExpressive.glb");
@@ -60,18 +60,21 @@ const ThreeScene = () => {
         /**
          * Lights
          */
-        const ambientLight = new THREE.AmbientLight(0xffffff, 0.5); // Color blanco, intensidad 0.5
+        // Luz ambiental: color verdoso, intensidad más alta
+        const ambientLight = new THREE.AmbientLight(0x00ff00, 1.5); // Verde intenso, mayor intensidad
         scene.add(ambientLight);
 
-        const directionalLight = new THREE.DirectionalLight(0xffcc00, 0.7);
-        directionalLight.position.set(1, 1, 1);
+        // Luz direccional: color azul, posición diferente, intensidad reducida
+        const directionalLight = new THREE.DirectionalLight(0x0000ff, 0.3); // Azul, intensidad más baja
+        directionalLight.position.set(-2, 2, -1); // Cambio de posición
         scene.add(directionalLight);
 
         const hemisphereLight = new THREE.HemisphereLight(0x0000ff, 0xff0000, 0.6);
         scene.add(hemisphereLight);
 
-        const pointLight = new THREE.PointLight(0xff9000, 1, 10, 2);
-        pointLight.position.set(0, 1, 1);
+        // Luz puntual: color magenta, mayor distancia, intensidad más alta
+        const pointLight = new THREE.PointLight(0xff00ff, 2, 20, 1); // Magenta, más intensa
+        pointLight.position.set(1, 2, 2); // Cambio de posición
         scene.add(pointLight);
 
         const spotLight = new THREE.SpotLight(0x78ff00, 2, 10, Math.PI * 0.1, 0.25, 1);

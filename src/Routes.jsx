@@ -10,7 +10,10 @@ import Inicio from "./pages/Inicio";
 import Laboratorio1 from "./pages/Laboratorio1";
 import Luces from "./pages/Luces";
 import Practica2 from "./pages/Practica2";
+import Practica3 from "./pages/Practica3";
+import Practica4 from "./pages/Practica4";
 import Sombras from "./pages/Sombras";
+import Practica1 from "./pages/practica1";
 
 
 const routes = [
@@ -25,7 +28,9 @@ const routes = [
   { path: "efectos", element: <Efectos /> },
   { path: "laboratorio1", element: <Laboratorio1 /> },
   { path: "Practica2", element: <Practica2 /> },
-
+  { path: "Practica3", element: <Practica3 /> },
+  { path: "Practica4", element: <Practica4 /> },
+  { path: "Practica1", element: <Practica1 /> },
 ];
 
 export default routes;

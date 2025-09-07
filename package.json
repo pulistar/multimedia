@@ -11,8 +11,8 @@
   },
   "dependencies": {
     "@react-spring/web": "^9.7.5",
-    "@react-three/drei": "^9.80.0",
-    "@react-three/fiber": "^8.13.0",
+    "@react-three/drei": "^9.122.0",
+    "@react-three/fiber": "^8.18.0",
     "bootstrap": "^5.3.2",
     "cannon": "^0.6.2",
     "cannon-es": "^0.20.0",
