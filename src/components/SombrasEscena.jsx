@@ -1,7 +1,7 @@
+import GUI from 'lil-gui';
 import React, { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
-import GUI from 'lil-gui';
 
 const SombrasEscena = () => {
     const mountRef = useRef(null);
@@ -38,8 +38,9 @@ const SombrasEscena = () => {
         /**
          * Lights
          */
-        const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
-        scene.add(ambientLight);
+        // 🔴 Solo dejamos la luz direccional
+        // const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
+        // scene.add(ambientLight);
 
         const directionalLight = new THREE.DirectionalLight(0xffffff, 1.3);
         directionalLight.castShadow = true;
@@ -55,24 +56,16 @@ const SombrasEscena = () => {
         directionalLight.position.set(0.8, 2.5, -1);
         scene.add(directionalLight);
 
-        const spotLight = new THREE.SpotLight(0xffffff, 3.6, 10, Math.PI * 0.3);
-        spotLight.castShadow = true;
-        spotLight.shadow.mapSize.width = 1024;
-        spotLight.shadow.mapSize.height = 1024;
-        spotLight.shadow.camera.near = 1;
-        spotLight.shadow.camera.far = 6;
-        spotLight.position.set(0, 2, 2);
-        scene.add(spotLight);
-        scene.add(spotLight.target);
+        // const spotLight = new THREE.SpotLight(0xffffff, 3.6, 10, Math.PI * 0.3);
+        // spotLight.castShadow = true;
+        // spotLight.position.set(0, 2, 2);
+        // scene.add(spotLight);
+        // scene.add(spotLight.target);
 
-        const pointLight = new THREE.PointLight(0xffffff, 2.7);
-        pointLight.castShadow = true;
-        pointLight.shadow.mapSize.width = 1024;
-        pointLight.shadow.mapSize.height = 1024;
-        pointLight.shadow.camera.near = 0.1;
-        pointLight.shadow.camera.far = 5;
-        pointLight.position.set(-1, 1, 0);
-        scene.add(pointLight);
+        // const pointLight = new THREE.PointLight(0xffffff, 2.7);
+        // pointLight.castShadow = true;
+        // pointLight.position.set(-1, 1, 0);
+        // scene.add(pointLight);
 
         /**
          * Material compartido (para que GUI lo controle)
@@ -109,7 +102,6 @@ const SombrasEscena = () => {
         const gui = new GUI();
 
         const lightFolder = gui.addFolder("Luces");
-        lightFolder.add(ambientLight, "intensity").min(0).max(3).step(0.001).name("Ambient Intensity");
         lightFolder.add(directionalLight, "intensity").min(0).max(3).step(0.001).name("Directional Intensity");
         lightFolder.add(directionalLight.position, "x").min(-5).max(5).step(0.001).name("DirLight X");
         lightFolder.add(directionalLight.position, "y").min(-5).max(5).step(0.001).name("DirLight Y");

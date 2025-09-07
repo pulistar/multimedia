@@ -41,6 +41,8 @@ function Layout() {
                   <Dropdown.Item href="/Practica2">Practica 2</Dropdown.Item>
                   <Dropdown.Item href="/Practica3">Practica 3</Dropdown.Item>
                   <Dropdown.Item href="/Practica4">Practica 4</Dropdown.Item>
+                  <Dropdown.Item href="/Practica5">Practica 5</Dropdown.Item>
+                  <Dropdown.Item href="/Practica6">Practica 6</Dropdown.Item>
                   
                 </Dropdown.Menu>
               </Dropdown>
